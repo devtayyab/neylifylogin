@@ -2,11 +2,11 @@
 const React = require("react");
 const netlifyIdentity = require("netlify-identity-widget");
 
-const IdentityContext = React.createContext({});
+export const IdentityContext = React.createContext({});
 
-exports.IdentityContext = IdentityContext;
+// exports.IdentityContext = IdentityContext; 
 
-const IdentityProvider = props => {
+export const IdentityProvider = props => {
   const [user, setUser] = React.useState();
 
   React.useEffect(() => {
@@ -24,4 +24,3 @@ const IdentityProvider = props => {
   );
 };
 
-exports.Provider = IdentityProvider;
