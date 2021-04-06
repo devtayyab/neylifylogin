@@ -1,26 +1,21 @@
-  
-const React = require("react");
-const netlifyIdentity = require("netlify-identity-widget");
+import { createContext, useReducer } from "react"
+import React  from 'react'
+import Taskreducer from './reducer'
+import netlifyIdentity from 'netlify-identity-widget'
+const user= null
+export const loginContext = createContext();
 
-export const IdentityContext = React.createContext({});
+export const ContextProvider = (props) =>{
 
-// exports.IdentityContext = IdentityContext; 
+const [state, dispatch] =useReducer(Taskreducer,user)
+console.log(state)
+return(
 
-export const IdentityProvider = props => {
-  const [user, setUser] = React.useState();
+  <loginContext.Provider value={{state, dispatch}}>
+    {console.log(state)}
+    {props.children}
+  </loginContext.Provider>
+)
 
-  React.useEffect(() => {
-    netlifyIdentity.init({});
-  });
-  netlifyIdentity.on("login", user => {
-    setUser(user);
-  });
-  netlifyIdentity.on("logout", () => setUser());
 
-  return (
-    <IdentityContext.Provider value={{ identity: netlifyIdentity, user }}>
-      {props.children}
-    </IdentityContext.Provider>
-  );
-};
-
+}

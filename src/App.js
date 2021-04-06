@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Dash from './login1'
+import Dash from './login'
 
 function App() {
   return (
